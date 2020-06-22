@@ -1,0 +1,56 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@model List<Gathering>
+
+<div class="text-center">
+    <div class="jumbotron">
+        <div class="mx-auto" style="width: 900px;">
+            <h1 class="display">Hello @ViewBag.User.FirstName! Welcome to Activity Center!</h1>
+            <hr>
+        </div>
+        <table class="table table-hover table-striped border border-primary">
+            <thead class="thead bg-primary text-white">
+                <tr>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Date & Time</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Event Coordinator</th>
+                    <th scope="col"># of Participants</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                @foreach (Gathering g in Model)
+                {
+                    <tr>
+                        <td scope="col"><a href="/gathering/@g.GatheringId">@g.Title</a></td>
+                        <td scope="col">@g.Date</td>
+                        <td scope="col">@g.DurationInt @g.DurationStr</td>
+                        <td scope="col">@g.Planner.FirstName</td>
+                        <td scope="col">@g.Guests.Count</td>
+                        <td scope="col">
+                            @if(ViewBag.User.UserId == g.Planner.UserId)
+                            {
+                                <a class="btn btn-warning btn-sm" href="/gathering/@g.GatheringId/delete">Cancel</a>
+                            }
+                            else
+                            {
+                                @* Query to see if they are going *@
+                                if(g.Guests.Any(gl => gl.UserId == ViewBag.User.UserId))
+                                {
+                                    <a class="btn btn-outline-dark btn-sm" asp-action="ToggleStatus" asp-route-gatheringId="@g.GatheringId" asp-route-status="leave">Back Out</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-outline-success btn-sm" asp-action="ToggleStatus" asp-route-gatheringId="@g.GatheringId" asp-route-status="join">RSVP</a>
+                                }
+                            }
+                        </td>
+                    </tr>    
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
