@@ -1,9 +1,9 @@
 @model Gathering
 <div class="row">
-    <div class="col-sm-8 offset-sm-2">
+    <div class="col-lg-8 offset-lg-2">
         <div class="card border border-primary mt-5">
-            <div class="card-header bg-primary text-white">@Model.Title
-                <div class="col mt-0 offset-10">
+            <div class="card-header bg-primary text-white"><h3>@Model.Title</h3>
+                <div class="col mt-2 ">
                     @if(ViewBag.User.UserId == Model.Planner.UserId)
                     {
                         <a class="btn btn-warning btn-sm" href="/gathering/@Model.GatheringId/delete">Cancel</a>
@@ -29,7 +29,7 @@
                         <p>Date: @Model.Date</p>
                         <p>Duration: @Model.DurationInt @Model.DurationStr</p>
                         <p>Description: @Model.Description</p>
-                        <div>
+                        <div class="embed-responsive embed-responsive-16by9">
                             <iframe
                                 width="450"
                                 height="250"
