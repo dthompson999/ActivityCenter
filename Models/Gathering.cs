@@ -14,7 +14,6 @@ namespace ActivityCenter.Models
         public string Title { get; set; }
 
         [Required (ErrorMessage = "Date & Time are required")]
-        [DataType(DataType.DateTime)]
         [FutureDate]
         public DateTime Date { get; set; }
 
