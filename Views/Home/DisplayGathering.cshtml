@@ -26,7 +26,7 @@
                     <div class="col-sm-8">
                         <p>Location: @Model.Location</p>
                         <p>Event Coordinator: @Model.Planner.FirstName</p>
-                        <p>Date: @Model.Date</p>
+                        <p>Date: @Model.Date.ToString("dddd, MMMM dd yyyy h:mm tt")</p>
                         <p>Duration: @Model.DurationInt @Model.DurationStr</p>
                         <p>Description: @Model.Description</p>
                         <div class="embed-responsive embed-responsive-16by9">
