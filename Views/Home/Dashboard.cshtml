@@ -28,7 +28,7 @@
                         {
                             <tr>
                                 <td scope="col"><a href="/gathering/@g.GatheringId">@g.Title</a></td>
-                                <td scope="col">@g.Date</td>
+                                <td scope="col">@g.Date.ToString("MM/dd/yy h:mm tt")</td>
                                 <td scope="col">@g.DurationInt @g.DurationStr</td>
                                 <td scope="col">@g.Planner.FirstName</td>
                                 <td scope="col">@g.Guests.Count</td>
